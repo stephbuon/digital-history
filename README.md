@@ -7,15 +7,20 @@
 
 Installing git on Mac:
  - open terminal
- - install the Xcode toolkit 
-   - type:`xcode-select --install`
- - install git
-   - type: 
+ - install the Xcode toolkit. Type: `xcode-select --install`
+ - install git. Type: `git`
 
-2. open terminal and navigate to your project folder. 
+Installing git on Linux: 
+ - do this 
 
-On Linux and 
-`cd`
+Installing git on Windows:
+ - Download and install [git for Windows] (https://git-scm.com/downloads) 
+
+2. in terminal navigate to your project folder. 
+
+On Mac and Linux:
+`cd <name of your project folder>`
+
 
 On Windows:
 
