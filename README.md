@@ -5,10 +5,10 @@
 
 1. Install git, an open-source tool for managing code. Installing git is necessary for using GitHub, the online service from which users can download (pull) and upload (push) code. 
 
-> Installing git on Mac:
-> open terminal
-> install the Xcode toolkit 
-> $`xcode-select --install`
+Installing git on Mac:
+ - open terminal
+ - install the Xcode toolkit 
+ - type:`xcode-select --install`
 
 
 2. open terminal and navigate to your project folder. 
