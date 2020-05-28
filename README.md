@@ -8,8 +8,9 @@
 Installing git on Mac:
  - open terminal
  - install the Xcode toolkit 
- - type:`xcode-select --install`
-
+   - type:`xcode-select --install`
+ - install git
+   - type: 
 
 2. open terminal and navigate to your project folder. 
 
