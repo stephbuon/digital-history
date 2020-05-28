@@ -11,7 +11,8 @@ Installing git on Mac:
  - install git. Type: `git`
 
 Installing git on Linux: 
- - do this 
+ - open terminal
+ - using package manager ------ 
 
 Installing git on Windows:
  - Download and install [git for Windows](https://git-scm.com/downloads) 
