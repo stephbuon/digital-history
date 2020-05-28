@@ -14,7 +14,7 @@ Installing git on Linux:
  - do this 
 
 Installing git on Windows:
- - Download and install [git for Windows] (https://git-scm.com/downloads) 
+ - Download and install [git for Windows](https://git-scm.com/downloads) 
 
 2. in terminal navigate to your project folder. 
 
