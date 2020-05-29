@@ -3,13 +3,13 @@
 
 ## How to use GitHub with the command-line
 
-Install git, an open-source tool for managing code. git is required to use GitHub, the online service from which users can download (pull) and upload (push) code. 
+Install git, a tool for managing code. git is required to use GitHub, the online service from which users can download (pull) and upload (push) code. 
 
-> on Mac: open terminal, install the Xcode toolkit `xcode-select --install`, and install git `git`.
+> Install git on Mac: open terminal, install the Xcode toolkit `xcode-select --install`, and install git `git`.
 
-> on Linux: open terminal, install git using the package manager with root privilages (for example, `sudo apt-get install git` in Debian).
+> Install git on Linux: open terminal, install git using the package manager with root privilages (for example, `sudo apt-get install git` in Debian).
 
-> on Windows: download and install [git for Windows](https://git-scm.com/downloads) 
+> Install git on Windows: download and install [git for Windows](https://git-scm.com/downloads) 
 
 In terminal (Mac & Linux) or command prompt (Windows) navigate to your project folder. 
 
