@@ -23,7 +23,7 @@ In terminal or command prompt, use the pull command to "pull" the repository int
 
 `git pull origin master`
 
- - Note: "master" here refers to the master branch. When pulling from another branch, sub master with [name of branch](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-branches).
+ * Note: "master" here refers to the master branch. When pulling from another branch, sub master with [name of branch](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-branches).
 
 _Congrats! You have cloned the respository to your local folder!_
 
