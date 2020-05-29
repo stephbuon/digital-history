@@ -12,7 +12,8 @@ on Mac:
 
 on Linux: 
  - open terminal
- - using package manager ------ 
+ - install git using your package manager (for example, `apt-get` in Debian or `sudo pacman` in Arch) with root privilages. 
+  - for example: `sudo apt-get install git`
 
 on Windows:
  - Download and install [git for Windows](https://git-scm.com/downloads) 
