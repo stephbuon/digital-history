@@ -19,27 +19,20 @@ Install git, an open-source tool for managing code. Installing git is necessary 
    - Download and install [git for Windows](https://git-scm.com/downloads) 
 
 In terminal (Mac & Linux) or command prompt (Windows) navigate to your project folder. 
- - `cd <path/to/folder>`
 
-On Mac and Linux:
-`cd <name of your project folder>`
+`cd <path/to/folder>`
 
+Add the remote URL as origin. The remote URL of any GitHub repository can be copied by clicking the green "Clone or download" button in the top right corner.
 
-On Windows:
+`git remote add origin <remote URL>`
 
-3. add the remote URL as origin.
-
-`git remote add origin < >`
-
-
-4. use the pull command to "pull" the repository into the local folder. 
+In terminal or command prompt, use the pull command to "pull" the repository into the local folder. 
 
 `git pull origin master`
 
-Note: "master" here refers to the master branch. When pulling from another branch, sub master with name of branch.
+Note: "master" here refers to the master branch. When pulling from another branch, sub master with [name of branch](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-branches).
 
-Congrats! You now have cloned the respository onto your desktop! 
-To 
+Congrats! You have cloned the respository to your local directory! 
 
 1. add the current files in the local folder to the staging area. 
 `git add --all`
