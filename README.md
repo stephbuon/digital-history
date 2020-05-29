@@ -17,7 +17,7 @@ After installing git, open terminal (Mac & Linux) or command prompt (Windows) an
 
 Add the repository's remote URL as "origin." The remote URL of any GitHub repository can be copied by clicking the green "Clone or download" button in the top right corner.
 
-`git remote add origin <remote URL>`
+`git remote add origin https://github.com/stephbuon/digital-history.git`
 
 In terminal or command prompt, use the pull command to "pull" the repository into the local folder. 
 
