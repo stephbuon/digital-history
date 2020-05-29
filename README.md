@@ -15,7 +15,7 @@ After installing git, open terminal (Mac & Linux) or command prompt (Windows) an
 
 `cd <path/to/folder>`
 
-Add the remote URL as origin. The remote URL of any GitHub repository can be copied by clicking the green "Clone or download" button in the top right corner.
+Add the repository's remote URL as "origin." The remote URL of any GitHub repository can be copied by clicking the green "Clone or download" button in the top right corner.
 
 `git remote add origin <remote URL>`
 
