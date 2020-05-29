@@ -7,10 +7,7 @@ Install git, an open-source tool for managing code. Installing git is necessary 
 
 on Mac: open terminal, install the Xcode toolkit `xcode-select --install`, and install git `git`.
 
- - on Linux: 
-   - open terminal
-   - install git using your package manager (for example, `apt-get` in Debian or `sudo pacman` in Arch) with root privilages. 
-     - for example: `sudo apt-get install git`
+on Linux: open terminal, install git using your package manager with root privilages (for example, `sudo apt-get install git` in Debian).
 
  - on Windows:
    - Download and install [git for Windows](https://git-scm.com/downloads) 
