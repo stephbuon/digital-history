@@ -15,10 +15,11 @@ Install git, an open-source tool for managing code. Installing git is necessary 
    - install git using your package manager (for example, `apt-get` in Debian or `sudo pacman` in Arch) with root privilages. 
      - for example: `sudo apt-get install git`
 
-on Windows:
- - Download and install [git for Windows](https://git-scm.com/downloads) 
+ - on Windows:
+   - Download and install [git for Windows](https://git-scm.com/downloads) 
 
-In terminal navigate to your project folder. 
+In terminal (Mac & Linux) or command prompt (Windows) navigate to your project folder. 
+ - `cd <path/to/folder>`
 
 On Mac and Linux:
 `cd <name of your project folder>`
