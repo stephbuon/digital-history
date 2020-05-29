@@ -27,14 +27,16 @@ Note: "master" here refers to the master branch. When pulling from another branc
 
 _Congrats! You have cloned the respository to your local folder!_
 
-To push code to GitHub, add the files of the local folder to the staging area.\
+To push code to GitHub, add the files of the local folder to the staging area.
 
 `git add --all`
 
 Commit your changes. 
+
 `git commit -m "an opitional commit message."`
 
 Push your changes to the specified branch (in this example, the master branch). 
+
 `git push origin master`
 
 
