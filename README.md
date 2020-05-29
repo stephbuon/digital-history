@@ -9,9 +9,9 @@ Install git, a tool for managing code. git is required to use GitHub, the online
 
 > Install git on Linux: open terminal, install git using the package manager with root privilages (for example, `sudo apt-get install git` in Debian).
 
-> Install git on Windows: download and install [git for Windows](https://git-scm.com/downloads) 
+> Install git on Windows: download and install [git for Windows](https://git-scm.com/downloads). 
 
-In terminal (Mac & Linux) or command prompt (Windows) navigate to your project folder. 
+After installing git, open terminal (Mac & Linux) or command prompt (Windows) and navigate to your project folder. 
 
 `cd <path/to/folder>`
 
@@ -25,15 +25,16 @@ In terminal or command prompt, use the pull command to "pull" the repository int
 
 Note: "master" here refers to the master branch. When pulling from another branch, sub master with [name of branch](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-branches).
 
-Congrats! You have cloned the respository to your local directory! 
+_Congrats! You have cloned the respository to your local folder!_
 
-1. add the current files in the local folder to the staging area. 
+To push code to GitHub, add the files of the local folder to the staging area.\
+
 `git add --all`
 
-2. commit your changes. 
+Commit your changes. 
 `git commit -m "an opitional commit message."`
 
-3. push your changes to the specified branch (in this example, the master branch). 
+Push your changes to the specified branch (in this example, the master branch). 
 `git push origin master`
 
 
