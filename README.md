@@ -5,10 +5,7 @@
 
 Install git, an open-source tool for managing code. Installing git is necessary for using GitHub, the online service from which users can download (pull) and upload (push) code. 
 
- - on Mac:
-   - open terminal
-   - install the Xcode toolkit. Type: `xcode-select --install`
-   - install git. Type: `git`
+on Mac: open terminal, install the Xcode toolkit `xcode-select --install`, and install git `git`.
 
  - on Linux: 
    - open terminal
