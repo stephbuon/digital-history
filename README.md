@@ -15,7 +15,7 @@ After installing git, open terminal (Mac & Linux) or command prompt (Windows) an
 
 `cd <path/to/folder>`
 
-Next, clone the repository to your local folder. The remote URL of any GitHub repository can be copied by clicking the green "Clone or download" button in the top right corner.
+Clone the repository to your local folder using the remote URL. The remote URL of any GitHub repository can be found by clicking the green "Clone or download" button in the top right corner.
 
 `git clone <remote URL>`
 
