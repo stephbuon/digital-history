@@ -1,1 +1,1 @@
-This directory is for code that is being troubleshot.
+Directory for troublehsooting code.
