@@ -1,1 +1,1 @@
-Directory for troublehsooting code.
+Directory for code that needs troubleshooting.
