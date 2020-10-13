@@ -2,9 +2,9 @@ The purpose of this directory is to provide the instruction and Notebooks necess
 
 For October 13th: 
 
-- 
+- Use notebook: intro_spaCy.ipynb
 
 For October 20th:
 
  - At least an hour before class, please follow [these pre-class instructions](https://docs.google.com/document/d/1wZAxPLj5BrZqxEgv3K80pxMSBhwtmEISupP_Vt1WN4I/edit?usp=sharing) that cover creating an interactive session and starting spaCy.
- - Notebook: m2_gender.ipynb
+ - Use notebook: m2_gender.ipynb
