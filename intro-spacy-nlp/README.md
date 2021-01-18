@@ -8,7 +8,7 @@ Your session’s environment settings should look exactly like the following ima
 
 
 
-![alt text](https://github.com/stephbuon/digital-history/blob/master/images/source-spacy-m2.png?raw=true)
+![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/source-spacy-m2.png?raw=true)
 
 That is `source /hpc/applications/python_environments/spacy/bin/activate`
 
