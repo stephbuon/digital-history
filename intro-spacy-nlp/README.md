@@ -6,7 +6,7 @@ Your session’s environment settings should look exactly like the following ima
 
 The Custom environment settings field reads: `source /hpc/applications/python_environments/spacy/bin/activate`
 
-> Note that the first two boxes must be empty, unlike the sessions created to work with Rob's and Eric's Notebooks.
+Note that the first two boxes must be empty, unlike the sessions created to work with Rob's and Eric's Notebooks.
 
 For prosperity's sake, you can give yourself 60 gigs of RAM.
 
