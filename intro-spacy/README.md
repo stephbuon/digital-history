@@ -14,6 +14,7 @@ For prosperity's sake, you can give yourself 60 gigs of RAM.
 
 ### Source Information
 
-The Notebook, "Natural Language Processing with spaCy" (intro_spacy.ipynb), was written by Steph Buongiorno, PhD student in Applied Science in Engineering at Southern Methodist University.
+The Notebook, "Natural Language Processing with spaCy" (intro_spacy.ipynb), was written by Steph Buongiorno, research assistant to Jo Guldi and PhD student in Applied Science in Engineering at Southern Methodist University.
+
 
 
