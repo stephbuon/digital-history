@@ -1,6 +1,8 @@
 # Text Mining as Historical Method
 HIST 3368 (undergrad) / Hist 6322 (Grad)
+
 Meets 3:00-3:50PM CT MWF                                            
+
 Meetings in Spring 2020 will be partly synchronous (via Zoom), partly asynchronous (via Canvas discussion boards, etc.). 
 
 ### About the Course
