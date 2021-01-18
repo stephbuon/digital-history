@@ -8,7 +8,7 @@ The Custom environment settings field reads: `source /hpc/applications/python_en
 
 > Note that the first two boxes must be empty, unlike the sessions created to work with Rob's and Eric's Notebooks.
 
-For prosperity's sake, you can give yourself 64 gigs of RAM.
+For prosperity's sake, you can give yourself 60 gigs of RAM.
 
 ![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/memory.png?raw=true)
 
