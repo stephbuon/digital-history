@@ -24,6 +24,3 @@ Here’s what’s expected of you in terms of weekly workload: By the stipulatio
 Depending on how difficult the exercises and readings are for each student, the time required to complete assignments will vary. Any students with concerns about workload should reach out to Dr. Guldi
 
 University guidelines stipulate that students should meet for 2 hr 50 minutes in class each week. In an online and remote class, our interactions will take the form of small group meetings, zoom breakout rooms, live lecture and discussion, pre-recorded lectures, graded discussions, and informal discussion and support via Slack. Structured interactions will be slightly tilted towards the beginning of the semester and slightly less heavy towards the end, when your focus will shift towards small groups.
-
-## Text Mining as Historical Method
-
