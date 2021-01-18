@@ -1,4 +1,4 @@
-### Running spaCy Notebooks on M2
+### Using spaCy on M2
 
 Your session’s environment settings should look exactly like the following image:
 
