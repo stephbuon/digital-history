@@ -12,6 +12,6 @@ For prosperity's sake, you can give yourself 60 gigs of RAM.
 
 ![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/memory.png?raw=true)
 
-### Citation Information
+### Source Information
 
 The Notebook, "Extracting Gendered Grammatical Constructions Using spaCy" (spacy_gender.ipynb), was written by Steph Buongiorno, research assistant to Jo Guldi and PhD student at Southern Methodist University.
