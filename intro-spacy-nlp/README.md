@@ -8,6 +8,10 @@ The Custom environment settings field reads: `source /hpc/applications/python_en
 
 > Note that the first two boxes must be empty, unlike the sessions created to work with Rob's and Eric's Notebooks.
 
+For prosperity's sake, you can give yourself 64 gigs of RAM.
+
+![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/memory.png?raw=true)
+
 ### Citation Information
 
 The Notebook, "Natural Language Processing with spaCy" (intro_spacy.ipynb), was written by Steph Buongiorno, research assistant to Jo Guldi, Associate Professor of History at Southern Methodist University.
