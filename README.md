@@ -16,11 +16,43 @@ When I was a PhD student living in Silicon Valley, something amazing happened: G
 
 I am also a historian of technology who is interested in questions about how we know what is true – whether new technologies or history give us the tools for discerning historical truth in a new way – and when official paper obscures more than it illuminates. My book on the importance of history as a tool for discovering truth, The History Manifesto, was recently named one of the most important books across all fields published in the last twenty years. 
 
-### Time Commitment 
-Here’s what’s expected of you in terms of weekly workload: By the stipulation of university accreditation programs, a 3-credit course requires 6 hours of homework and group work each week. Your work will typically take the form of: 
-- 2-4 hr code
-- 2-3 hr of reading (~50-100 pp)
+# How to Access Jupyter Lab on M2
 
-Depending on how difficult the exercises and readings are for each student, the time required to complete assignments will vary. Any students with concerns about workload should reach out to Dr. Guldi
+1. Go to [hpc.smu.edu](https://www.smu.edu/OIT/Services/HPC)
 
-University guidelines stipulate that students should meet for 2 hr 50 minutes in class each week. In an online and remote class, our interactions will take the form of small group meetings, zoom breakout rooms, live lecture and discussion, pre-recorded lectures, graded discussions, and informal discussion and support via Slack. Structured interactions will be slightly tilted towards the beginning of the semester and slightly less heavy towards the end, when your focus will shift towards small groups.
+2. Sign in using your SMU ID and SMU password
+
+3. In the "Dashboard" tab select "JupyterLab" from the "Interactive Apps" drop-down menu.
+
+![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/select_jupyter.png?raw=true)
+
+4. Fill in the fields that are required for your Jupyter Lab instance. If custom fields are required, they will be specified in the README file in the code's parent folder.
+
+![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/fields.png?raw=true)
+
+5. Select other options required for your Jupyter instance. 
+
+For this tutorial:
+
+Partition: htc
+Number of hours: 3
+Number of nodes: 1
+Cores per node: 1
+GPUs per node: 0
+Memory: 6
+
+![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/resources.png?raw=true)
+
+6. Select "Launch"
+
+Wait for the job to start on M2. When the job starts a new button "Connect to JupyterLab" button will appear.
+
+7. Select "Connect to JupyterLab"
+
+![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/connect_jupyter.png?raw=true)
+
+The JupyterLab graphical interface will be presented and running on the M2 resource requested.
+
+8. Double click the appropriate notebook to open it.
+
+When finished using the JupyterLab instance, return to the "My Interactive Sessions" tab in your browser and select "Delete" and "Confirm", when prompted, to cancel the job on M2.
