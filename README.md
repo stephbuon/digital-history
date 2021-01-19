@@ -51,10 +51,8 @@ Wait for the job to start on M2. When the job starts a new button "Connect to Ju
 
 ![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/connect_jupyter_1.png?raw=true)
 
-The JupyterLab graphical interface will be presented and running on the M2 resource requested.
-
-8. Double click the appropriate notebook to open it.
+8. The JupyterLab graphical interface will be presented and running on the M2 resource requested. Double click the appropriate notebook to open it.
 
 ![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/double_click.png?raw=true)
 
-When finished using the JupyterLab instance, return to the "My Interactive Sessions" tab in your browser and select "Delete" and "Confirm", when prompted, to cancel the job on M2.
+9. When finished using the JupyterLab instance, return to the "My Interactive Sessions" tab in your browser and select "Delete" and "Confirm", when prompted, to cancel the job on M2.
