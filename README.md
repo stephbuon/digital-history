@@ -30,9 +30,7 @@ I am also a historian of technology who is interested in questions about how we 
 
 ![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/fields.png?raw=true)
 
-5. Select other options required for your Jupyter instance. 
-
-For this tutorial:
+5. Select other options required for your Jupyter instance. For this tutorial:
 
 - Partition: htc
 - Number of hours: 3
