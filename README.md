@@ -34,12 +34,12 @@ I am also a historian of technology who is interested in questions about how we 
 
 For this tutorial:
 
-Partition: htc
-Number of hours: 3
-Number of nodes: 1
-Cores per node: 1
-GPUs per node: 0
-Memory: 6
+- Partition: htc
+- Number of hours: 3
+- Number of nodes: 1
+- Cores per node: 1
+- GPUs per node: 0
+- Memory: 6
 
 ![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/resources.png?raw=true)
 
@@ -54,5 +54,7 @@ Wait for the job to start on M2. When the job starts a new button "Connect to Ju
 The JupyterLab graphical interface will be presented and running on the M2 resource requested.
 
 8. Double click the appropriate notebook to open it.
+
+![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/double_click.png?raw=true)
 
 When finished using the JupyterLab instance, return to the "My Interactive Sessions" tab in your browser and select "Delete" and "Confirm", when prompted, to cancel the job on M2.
