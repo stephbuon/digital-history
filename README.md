@@ -49,7 +49,7 @@ Wait for the job to start on M2. When the job starts a new button "Connect to Ju
 
 7. Select "Connect to JupyterLab"
 
-![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/connect_jupyter.png?raw=true)
+![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/connect_jupyter_1.png?raw=true)
 
 The JupyterLab graphical interface will be presented and running on the M2 resource requested.
 
