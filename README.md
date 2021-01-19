@@ -41,7 +41,7 @@ For this tutorial:
 - GPUs per node: 0
 - Memory: 6
 
-![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/resources.png?raw=true)
+![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/resources_1.png?raw=true)
 
 6. Select "Launch"
 
