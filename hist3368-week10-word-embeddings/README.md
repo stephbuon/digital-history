@@ -20,3 +20,4 @@ written by Dan Sinykin, Assistant Professor of English at Emory University. It w
 The following edits were made by Steph Buongiorno to the original Notebook: 
 1) The deletion of installation information specific to local computer. 
 2) The addition of code that compares years and applies sklearn to environmental Congressional discourse post 1950.
+3) The optimization of data display where the once intensive output of print statements is truncated and stored in memory.
