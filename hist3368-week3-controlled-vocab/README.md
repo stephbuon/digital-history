@@ -10,4 +10,4 @@ The __Custom module paths__ field reads: `module use $HOME/text_mining_with_pyth
 
 ### Source Information 
 
-The Notebook, "enter" (enter.ipynb), was written by Dr. Jo Guldi, enter. 
+The Notebook, "For Loops, Expert Vocabulary, and Revising With a Thesaurus" (hist3368-week3-controlled-vocab.ipynb), was written by Dr. Jo Guldi, Associate Professor of History at Southern Methodist University.  
