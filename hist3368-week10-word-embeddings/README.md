@@ -4,7 +4,7 @@ ENTER rob and erics info
 
 ### Source Information
 
-The Notebook, "Intro to scikit-learn (sklearn)" (hist3368-week10-word-embeddings.ipynb), was written by 
+The Notebook, "Word Embedding Models: word2vec" (hist3368-week10-word-embeddings.ipynb), was written by 
 
 
 
