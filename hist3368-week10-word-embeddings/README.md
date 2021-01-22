@@ -1,6 +1,6 @@
 ### Running this Notebook on M2
 
-ENTER
+ENTER rob and erics info
 
 ### Source Information
 
