@@ -4,19 +4,6 @@ ENTER rob and erics info
 
 ### Source Information
 
-The Notebook, "Word Embedding Models: word2vec" (hist3368-week10-word-embeddings.ipynb), was written by 
+The Notebook, "Word Embedding Models: word2vec" (hist3368-week10-word-embeddings.ipynb), was written by Dan Sinykin, Assistant Professor of English at Emory University. It was copied/forked from [sinykin](https://github.com/sinykin) at: [sinykin/QTM-340/notebooks/class10-sklearn-countvectorizer-inclass-ds.ipynb](https://github.com/sinykin/QTM-340/blob/master/notebooks/class10-sklearn-countvectorizer-inclass-ds.ipynb). 
 
-
-
-
-
-
-
-
-
-
-written by Dan Sinykin, Assistant Professor of English at Emory University. It was copied/forked from [sinykin](https://github.com/sinykin) at: [sinykin/QTM-340/notebooks/class10-sklearn-countvectorizer-inclass-ds.ipynb](https://github.com/sinykin/QTM-340/blob/master/notebooks/class10-sklearn-countvectorizer-inclass-ds.ipynb). 
-
-The following edits were made by Steph Buongiorno to the original Notebook: 
-1) The deletion of installation information specific to local computer. 
-2) The addition of code that appliees word embeddigns to environmental Congressional discourse post 1950, and compares the output by years. (or do I want decades?) 
+The follow on Notebook, "Applying __gensim__ to the Stanford Congressional Data by Year" (hist3368-week10-pt2-word-embeddings.ipynb), was written by Steph Buongiorno.
