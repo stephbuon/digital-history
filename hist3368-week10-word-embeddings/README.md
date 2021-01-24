@@ -6,4 +6,4 @@ ENTER rob and erics info
 
 The Notebook, "Word Embedding Models: word2vec" (hist3368-week10-word-embeddings.ipynb), was written by Dan Sinykin, Assistant Professor of English at Emory University. It was copied/forked from [sinykin](https://github.com/sinykin) at: [sinykin/QTM-340/notebooks/class10-sklearn-countvectorizer-inclass-ds.ipynb](https://github.com/sinykin/QTM-340/blob/master/notebooks/class10-sklearn-countvectorizer-inclass-ds.ipynb). 
 
-The follow on Notebook, "Environmental Keywords: Word Embeddings in the 20C Hansard Debates" (hist3368-week10-pt2-word-embeddings.ipynb), was written by Steph Buongiorno.
+The follow on Notebook, "Modeling the 20C Hansard Debates on the Environment" (hist3368-week10-pt2-word-embeddings.ipynb), was written by Steph Buongiorno.
