@@ -1,13 +1,15 @@
-### Running this Notebook on M2
+## Configuring your session on M2
 
-Your session’s fileds should look exactly like the following image:
+Your session's settings should look like the following image: 
 
 ![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/data_team_fields.png?raw=true)
 
-The __Additional environment modules to load__ field reads: `environment`
+__Additional environments to load__: `environment`
 
-The __Custom module paths__ field reads: `module use $HOME/text_mining_with_python`
+__Custom module paths__: `module use $HOME/text_mining_with_python`
 
-### Source Information 
+__Memory__: `6G`
+
+## Source Information
 
 The Notebook, "For Loops, Expert Vocabulary, and Revising With a Thesaurus" (hist3368-week3-controlled-vocab.ipynb), was written by Dr. Jo Guldi, Associate Professor of History at Southern Methodist University.  
