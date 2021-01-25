@@ -11,3 +11,5 @@ __Custom module paths__: `module use $HOME/text_mining_with_python`
 __Memory__: `6G`
 
 ## Source Information
+
+The Notebook, "Working with Dates in Python" (groupby_time_congress.ipynb), was written by Dr. Jo Guldi, Associate Professor of History at Southern Methodist University. It was inspired by lessons from [Programming Historian](https://programminghistorian.org/).
