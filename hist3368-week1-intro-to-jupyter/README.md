@@ -2,8 +2,7 @@
 
 Your session's settings should look exactly like the following image: 
 
-![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/
-data_team_fields.png?raw=true)
+![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/data_team_fields.png?raw=true)
 
 __Custom environment settings__: `source /hpc/applications/python_environments/spacy/bin/activate`
 
