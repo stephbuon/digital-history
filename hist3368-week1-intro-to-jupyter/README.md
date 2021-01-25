@@ -1,6 +1,7 @@
 ### Configuring your session on M2
 
 __Settings__: default
+
 __Memory__: `6G`
 
 ## Source Information
