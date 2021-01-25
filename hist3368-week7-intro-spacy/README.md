@@ -1,16 +1,14 @@
-### Using spaCy on M2
+## Configuring your session on M2
 
-Your session’s environment settings should look exactly like the following image:
+Your session’s settings should look exactly like the following image:
 
 ![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/source-spacy-m2.png?raw=true)
 
-The Custom environment settings field reads: `source /hpc/applications/python_environments/spacy/bin/activate`
-
 Note that the first two boxes must be empty, unlike the sessions created to work with Rob's and Eric's Notebooks.
 
-For prosperity's sake, you can give yourself 60 gigs of RAM.
+__Custom environment settings__: `source /hpc/applications/python_environments/spacy/bin/activate`
 
-![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/memory.png?raw=true)
+__Memory__: `64G`
 
 ### Source Information
 
