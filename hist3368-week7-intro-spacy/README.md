@@ -8,7 +8,7 @@ Note that the first two boxes must be empty, unlike the sessions created to work
 
 __Custom environment settings__: `source /hpc/applications/python_environments/spacy/bin/activate`
 
-__Memory__: `64G`
+__Memory__: `20G`
 
 ### Source Information
 
