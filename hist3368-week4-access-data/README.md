@@ -9,7 +9,13 @@ __Additional environments to load__: `environment`
 __Custom module paths__: `module use $HOME/text_mining_with_python`
 
 __Memory__: 
+Below are the memory requirements to read in each data set. You may want to increase your memory (maybe from `6G` to `10G`, for example) if you expect to create many variables while processing your data. 
+- Project Gutenberg: start with `6G`. Increase memory if you make a large corpus.
+- EDGAR: start with `6G`. Increase memory if you add many more companies. 
 - Hansard: `64G`
+- US Congress: `6G`
+- Reddit: In total, this data set is ~`250G`. Please see Steph, Eric, or Rob if you want to use this data.  
+
 
 ## Source Information
 
