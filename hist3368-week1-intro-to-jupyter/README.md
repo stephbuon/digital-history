@@ -1,4 +1,4 @@
-### Configuring your session on M2
+## Configuring your session on M2
 
 __Settings__: default
 
