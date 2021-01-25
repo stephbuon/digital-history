@@ -1,6 +1,13 @@
 ## Configuring your session on M2
 
-__Settings__: default
+Your session's settings should look exactly like the following image: 
+
+![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/
+data_team_fields.png?raw=true)
+
+__Custom environment settings__: `source /hpc/applications/python_environments/spacy/bin/activate`
+
+__Memory__: `64G`
 
 __Memory__: `6G`
 
