@@ -1,4 +1,4 @@
-### Configuring your session on M2
+## Configuring your session on M2
 
 Your session’s settings should look exactly like the following image:
 
@@ -10,6 +10,6 @@ __Custom environment settings__: `source /hpc/applications/python_environments/s
 
 __Memory__: `64G`
 
-### Source Information
+## Source Information
 
 The Notebook, "Extracting Gendered Grammatical Constructions Using spaCy" (spacy_gender.ipynb), was written by Steph Buongiorno, research assistant to Jo Guldi and PhD student in Applied Science in Engineering at Southern Methodist University.
