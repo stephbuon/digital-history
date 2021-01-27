@@ -14,7 +14,7 @@ Below are the memory requirements to read in each data set. You may want to incr
 - EDGAR: start with `6G`. Increase memory if you add many more companies. 
 - Hansard: `64G`
 - US Congress: `6G`
-- Reddit: In total, this data set is ~`250G`. Please see Steph, Eric, or Rob if you want to use this data.  
+- Reddit: In total, this data set is ~`250G`. Please see Steph if you want to use this data. 
 
 
 ## Source Information
