@@ -15,7 +15,7 @@ Below are the memory requirements to read in each data set. You may want to incr
 - Hansard: `64G`
 - US Congress: `6G`
 - Reddit: 
-  - the Reddit data is broken into 92 (yes, 92!) files totalling ~`250G` of Reddit data! This is big, big data. You can access individual files using ~`6-15G`, but please see Steph if you need help accessing the Subreddits you want.
+  - the Reddit data is broken into 92 (yes, 92!) files totalling ~`250G` of Reddit data! You can access individual files using ~`6-15G`, but please see Steph if you need help.
 
 ## Source Information
 
