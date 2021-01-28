@@ -12,4 +12,4 @@ __Memory__: `6G`
 
 ## Source Information
 
-The Notebook, "Calculating Log-Liklihood" (hist3368-week9-log-likelihood.ipynb), was written by Phuoc Dinh Le, a senior computer science student at Southern Methodist Universithy.
+The Notebook, "Calculating Log-Liklihood" (hist3368-week9-log-likelihood.ipynb), was written by Phuoc Dinh Le, a senior computer science student at Southern Methodist Universithy, and revised by Dr. Jo Guldi, Associate Professor of History at Southern Methodist University. 
