@@ -12,4 +12,4 @@ __Memory__: `6G`
 
 ## Source Information
 
-The Notebook, "Working with Dates in Python" (groupby_time_congress.ipynb), was written by Dr. Jo Guldi, Associate Professor of History at Southern Methodist University. It was inspired by lessons from [Programming Historian](https://programminghistorian.org/).
+The Notebook, "Working with Dates in Python" (hist3368-week2-critical-word-count.ipynb), was written by Dr. Jo Guldi, Associate Professor of History at Southern Methodist University. It was inspired by lessons from [Programming Historian](https://programminghistorian.org/).

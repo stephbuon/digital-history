@@ -12,4 +12,4 @@ __Memory__: `32G`
 
 ### Source Information
 
-The Notebook, "Working with Dates in Python" (groupby_time_congress.ipynb), was written by Dr. Jo Guldi, Associate Professor of History at Southern Methodist University, and Steph Buongiorno, PhD student in Applied Science in Engineering at Southern Methodist University.
+The Notebook, "Working with Dates in Python" (hist3368-week5-group-by.ipynb), was written by Dr. Jo Guldi, Associate Professor of History at Southern Methodist University, and Steph Buongiorno, project manager to Dr. Jo Guldi and PhD student in Applied Science in Engineering at Southern Methodist University.

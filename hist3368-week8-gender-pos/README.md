@@ -12,4 +12,4 @@ __Memory__: `64G`
 
 ## Source Information
 
-The Notebook, "Extracting Gendered Grammatical Constructions Using spaCy" (hist3368-week8-gender-pos.ipynb), was written by Steph Buongiorno, research assistant to Jo Guldi and PhD student in Applied Science in Engineering at Southern Methodist University.
+The Notebook, "Extracting Gendered Grammatical Constructions Using spaCy" (hist3368-week8-gender-pos.ipynb), was written by Steph Buongiorno, project manager to Dr. Jo Guldi and PhD student in Applied Science in Engineering at Southern Methodist University.

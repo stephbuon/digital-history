@@ -14,9 +14,11 @@ Below are the memory requirements to read in each data set. You may want to incr
 - EDGAR: start with `6G`. Increase memory if you add many more companies. 
 - Hansard: `64G`
 - US Congress: `6G`
-- Reddit: In total, this data set is ~`250G`. Please see Steph, Eric, or Rob if you want to use this data.  
-
+- Dallas City Council: `6G`
+- Houston City Council: `6G`
+- Reddit: 
+  - the Reddit data is broken into 92 (yes, 92!) files totalling ~`250G` of Reddit data!!! You can access individual files using ~`6-15G`, but please see Steph if you need help.
 
 ## Source Information
 
-The Notebook, "Data Access Notebook" (access_data.ipynb), was written by [Dr. Eric Godat](https://github.com/egodat), member of OIT at Southern Methodist University, with modifications from Steph Buongiorno, research assistant to Dr. Jo Guldi and PhD student in Applied Science in Engineering at Southern Methodist University. It was forked/copied from Southern Methodist University's GitHub at: [SouthernMethodistUniversity/text_mining_data_sets/DataAccess.ipynb](https://github.com/SouthernMethodistUniversity/text_mining_data_sets/blob/master/DataAccess.ipynb).
+The Notebook, "Instructions for Accessing Data" (hist3368-week4-access-data.ipynb), was written by Steph Buongiorno, project manager to Dr. Jo Guldi and PhD student in Applied Science in Engineering at Southern Methodist University. Additional code for reading in data was provided by Alexander Cerpa, computer science undergraduate at Southern Methodist Univeristy. A version one of this notebook was written by [Dr. Eric Godat](https://github.com/egodat), member of OIT at Southern Methodist University. Version one can be found on Southern Methodist University's GitHub at: [SouthernMethodistUniversity/text_mining_data_sets/DataAccess.ipynb](https://github.com/SouthernMethodistUniversity/text_mining_data_sets/blob/master/DataAccess.ipynb).
