@@ -2,11 +2,11 @@
 
 Your session's settings should look like the following image: 
 
-![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/data_team_fields.png?raw=true)
+![placeholdertext]()
 
 __Additional environments to load__: `environment`
 
-__Custom module paths__: `module use $HOME/text_mining_with_python`
+__Custom module paths__: `module use $HOME/digital-history/text_mining_with_python`
 
 __Memory__: 
 Below are the memory requirements to read in each data set. You may want to increase your memory (maybe from `6G` to `10G`, for example) if you expect to create many variables while processing your data. 
