@@ -11,8 +11,8 @@ Computer-powered methods are changing the way that we access information about s
 ### About the GitHub Repository
 The purpose of this repository is to provide resources for digital-history. It aggregates original Notebooks written by Jo Guldi or her research assistant, Steph Buongiorno, Notebooks written by Southern Methodist University's "Data Team" (Rob Kalescky and Eric Godat), and Notebooks written by scholars in the digital humanities. Authorial credit for copied/forked Notebooks is given in associated README.md files located in the Notebook's parent directory. All code copied/forked from others' repositories are subject to the author's original licensing, not the licensing of the present repository.
 
-<!-- #### Initial Clone -->
-<!-- `git clone https://github.com/stephbuon/digital-history.git --recursive` -->
+<!-- #### Initial Clone 
+`git clone https://github.com/stephbuon/digital-history.git --recursive`
 
 <!-- #### Subsequent Updates
 From inside `digital-history` directory:
