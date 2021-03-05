@@ -8,7 +8,7 @@
 
 <!-- __Custom module paths__: `module use $HOME/digital-history/text_mining_with_python` --> 
 
-__Memory__: `6`
+__Memory__: `6` G
 
 ## Source Information
 The Notebook, "Intro to Jupyter Notebook and Python Crash Course" (hist3368-week1-intro-to-jupyter.ipynb), was written by Lauren Klein, Associate Professor in the departments of English and Quantitative Theory & Methods at Emory University. It was copied/forked from [laurenfklein](https://github.com/laurenfklein) at:
