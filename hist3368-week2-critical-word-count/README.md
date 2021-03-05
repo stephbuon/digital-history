@@ -8,7 +8,7 @@
 
 <!-- __Custom module paths__: `module use $HOME/digital-history/text_mining_with_python`-->
 
-__Memory__: `6`
+__Memory__: `6` G
 
 ## Source Information
 
