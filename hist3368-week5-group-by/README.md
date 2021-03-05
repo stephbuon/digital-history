@@ -8,7 +8,7 @@
 
 <!-- __Custom module paths__: `module use $HOME/digital-history/text_mining_with_python` -->
 
-__Required Memory__: `32` Gigs
+__Memory__: `32` Gigs
 
 ### Source Information
 
