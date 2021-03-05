@@ -11,17 +11,25 @@ Computer-powered methods are changing the way that we access information about s
 ### About the GitHub Repository
 The purpose of this repository is to provide resources for digital-history. It aggregates original Notebooks written by Jo Guldi or her research assistant, Steph Buongiorno, Notebooks written by Southern Methodist University's "Data Team" (Rob Kalescky and Eric Godat), and Notebooks written by scholars in the digital humanities. Authorial credit for copied/forked Notebooks is given in associated README.md files located in the Notebook's parent directory. All code copied/forked from others' repositories are subject to the author's original licensing, not the licensing of the present repository.
 
-
 #### Initial Clone 
 `git clone https://github.com/stephbuon/digital-history.git --recursive`
 
-<!-- #### Subsequent Updates
+#### Subsequent Updates
 From inside `digital-history` directory:
 ```
 git reset --hard
 git pull
 git submodule update --recursive 
-```-->
+```
+#### Setting Up our M2 Environment for the First Time
+
+After cloning the repository, configure your M2 environment so the digital-history directory can be viewed. Go to __File -> Open from path...__
+
+![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/file_open)
+
+Then enter the path to the cloned repository:
+
+![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/file_open)
 
 ### About the Instructor: Professor Jo Guldi, PhD
 When I was a PhD student living in Silicon Valley, something amazing happened: Google Books launched the first mass digitization experiment of its kind, releasing scans of the Harvard, Yale, and New York Public Libraries onto the web. I quickly saw that there was potential, in this textual data, for kinds of analysis that had never been attempted before. From that point forward, I helped to found the discipline of "digital history," and I have been applying myself to the study of how computational algorithms can help us learn new things about the past, the present, and ourselves.
