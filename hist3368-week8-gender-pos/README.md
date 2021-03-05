@@ -4,7 +4,7 @@ Your session’s settings should look exactly like the following image:
 
 ![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/source-spacy-m2.png?raw=true)
 
-Note that the first two boxes must be empty, unlike the sessions created to work with Rob's and Eric's Notebooks.
+Note that the first two boxes are empty.
 
 __Custom environment settings__: `source /hpc/applications/python_environments/spacy/bin/activate`
 
