@@ -14,6 +14,8 @@ data <- read_csv("~/reddit_subset_2008.csv")
 data <- data %>%
   select(body, subreddit)
 
+data$body <- data$body %>%
+  tolower()
 
 #data <- data %>%
 #  filter(str_detect(body, "\\bhe |\\bshe "))
