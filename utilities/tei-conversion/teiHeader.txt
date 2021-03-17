@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE TEI.2 PUBLIC "-//TEI P4//DTD Lite DTD Driver File//EN" "http://www.tei-c.org/Lite/DTD/teixlite.dtd">
+
+<TEI.2>
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Hansard Sample ==YEAR==</title>
+      </titleStmt>
+      <publicationStmt>
+        <publisher></publisher>
+        <date>==YEAR==</date>
+        <idno>==IDENTIFIER==</idno>
+      </publicationStmt>
+      <seriesStmt>
+      </seriesStmt>
+      <notesStmt>
+      </notesStmt>
+         <sourceDesc>
+            <bibl>
+               <author></author>
+               <title>Hansard Sample ==YEAR==</title>
+               <editor></editor>
+               <extent></extent>
+               <imprint>
+                  <pubPlace></pubPlace>
+                  <publisher></publisher>
+                  <date>==YEAR==</date>
+               </imprint>
+            </bibl>
+         </sourceDesc>
+    </fileDesc>
+    <profileDesc>
+      <creation>
+          <date>==YEAR==</date>
+      </creation>
+      <textClass>
+        <keywords>
+        </keywords>
+      </textClass>
+    </profileDesc>
+  </teiHeader>
+<text>
+
