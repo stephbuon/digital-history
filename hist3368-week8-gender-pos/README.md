@@ -8,7 +8,27 @@ Note that the first two boxes are empty.
 
 __Custom environment settings__: `source /hpc/applications/python_environments/spacy/bin/activate`
 
-__Memory__: `64` G
+__Memory__: `20` G
+
+### List of Useful Part-of-Speech spaCy Symbols:
+
+- `'ADJ'` for adjective
+- `'ADV'` for adverb
+- `'NOUN'` for noun 
+- `'PRON'` for pronoun
+- `'VERB'` for verb 
+
+### List of Useful Syntactic Dependency spaCy Symbols:
+
+- `'acomp'` for adjectival complement 
+- `'dobj'` for direct object 
+- `'iobj'` for indirect object 
+- `'pobj'` for object of a preposition 
+- `'nsubj'` for nominal subject
+- `'nsubjpass'` for passive nominal subject
+- `'root'` for root (or main) verb
+- `'prep'` for preposition
+- `'relcl'` for relative clause 
 
 ## Source Information
 
