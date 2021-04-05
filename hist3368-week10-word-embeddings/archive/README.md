@@ -1,4 +1,4 @@
-This folder contains the word2vec-style Notebooks. 
+This folder contains the word2vec, analogy-style problems. 
 
 ## Configuring your session on M2
 
