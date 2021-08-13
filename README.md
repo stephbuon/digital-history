@@ -46,7 +46,7 @@ I am also a historian of technology who is interested in questions about how we 
 
 ![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/select_jupyter.png?raw=true)
 
-4. Fill in the fields that are required for your Jupyter Lab instance. If custom fields are required, they will be specified in the README file in the code's parent folder.
+4. Fill in the fields that are required for your Jupyter Lab instance. If custom fields are required, they will be specified in the README file in that week's folder.
 
 ![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/fields.png?raw=true)
 
