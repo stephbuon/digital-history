@@ -12,4 +12,4 @@ __Memory__: `30` G
 
 ## Source Information
 
-The Notebook, "Calculating Log-Liklihood" (hist3368-week9-log-likelihood.ipynb), was written by Jo Guldi and is based on a Notebook by Phuoc Dinh Le, a senior computer science student at Southern Methodist Universithy.
+The Notebook, "Calculating Log-Liklihood" (hist3368-week9-log-likelihood.ipynb), was written by Jo Guldi.
