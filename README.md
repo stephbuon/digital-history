@@ -23,54 +23,5 @@ git submodule update --recursive
 ```
 #### Setting Up our M2 Environment for the First Time
 
-After cloning the repository, configure your M2 environment so the digital-history directory can be viewed. Go to __File -> Open from path...__
+[Log onto M2 and Load JupyterLab](https://docs.google.com/document/d/1gDEMDv6BMZHOx_OQ2GyRdrQQq9qIXJZaLEFUFsOni-s/edit?usp=sharing)
 
-![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/file_open.png)
-
-Then enter the path to the cloned repository:
-
-![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/open_filep.png)
-
-### About the Instructor: Professor Jo Guldi, PhD
-When I was a PhD student living in Silicon Valley, something amazing happened: Google Books launched the first mass digitization experiment of its kind, releasing scans of the Harvard, Yale, and New York Public Libraries onto the web. I quickly saw that there was potential, in this textual data, for kinds of analysis that had never been attempted before. From that point forward, I helped to found the discipline of "digital history," and I have been applying myself to the study of how computational algorithms can help us learn new things about the past, the present, and ourselves.
-
-I am also a historian of technology who is interested in questions about how we know what is true – whether new technologies or history give us the tools for discerning historical truth in a new way – and when official paper obscures more than it illuminates. My book on the importance of history as a tool for discovering truth, The History Manifesto, was recently named one of the most important books across all fields published in the last twenty years. 
-
-# How to Access Jupyter Lab on M2
-
-1. Go to [hpc.smu.edu](https://www.smu.edu/OIT/Services/HPC)
-
-2. Sign in using your SMU ID and SMU password
-
-3. In the "Dashboard" tab select "JupyterLab" from the "Interactive Apps" drop-down menu.
-
-![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/select_jupyter.png?raw=true)
-
-4. Fill in the fields that are required for your Jupyter Lab instance. If custom fields are required, they will be specified in the README file in that week's folder.
-
-![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/fields.png?raw=true)
-
-5. Select other options required for your Jupyter instance. For this tutorial:
-
-- Partition: htc
-- Number of hours: 3
-- Number of nodes: 1
-- Cores per node: 1
-- GPUs per node: 0
-- Memory: 6
-
-![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/resources_1.png?raw=true)
-
-6. Select "Launch"
-
-Wait for the job to start on M2. When the job starts a new button "Connect to JupyterLab" button will appear.
-
-7. Select "Connect to JupyterLab"
-
-![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/connect_jupyter_1.png?raw=true)
-
-8. The JupyterLab graphical interface will be presented and running on the M2 resource requested. Double click the appropriate notebook to open it.
-
-![placeholdertext](https://github.com/stephbuon/digital-history/blob/master/images/double_click.png?raw=true)
-
-9. When finished using the JupyterLab instance, return to the "My Interactive Sessions" tab in your browser and select "Delete" and "Confirm", when prompted, to cancel the job on M2.
