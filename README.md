@@ -3,7 +3,7 @@ HIST 3368 (undergrad) / Hist 6322 (Grad)
 
 Meets 3:00-3:50PM CT MWF                                            
 
-Meetings in Spring 2020 will be partly synchronous (via Zoom), partly asynchronous (via Canvas discussion boards, etc.). 
+Meetings will be partly synchronous (via Zoom), partly asynchronous (via Canvas discussion boards, etc.). 
 
 ### About the Course
 Computer-powered methods are changing the way that we access information about society. New methods help us to detect change over time, to identify influential figures, and to name turning points. What happens when we apply these tools to a million congressional debates or tweets? This course -- which is appropriate to both computationalists as well as those with a background in the humanities (but not code) -- will teach students how to analyze texts and as data for evidence of change over time. This course is an introduction to the cutting-edge methodologies of textual analysis that are transforming the humanities today.
