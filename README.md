@@ -24,4 +24,4 @@ git submodule update --recursive
 #### Setting Up our M2 Environment for the First Time
 
 [Log onto M2 and Load JupyterLab](https://docs.google.com/document/d/1gDEMDv6BMZHOx_OQ2GyRdrQQq9qIXJZaLEFUFsOni-s/edit?usp=sharing)
-
+[Command Line Cheat Sheet](https://docs.google.com/document/d/1ZpWY6UNyFGG5haJXchQZp792brcWK0c2oOz3jXbkaQw/edit)
