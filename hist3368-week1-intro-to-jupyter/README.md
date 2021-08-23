@@ -11,7 +11,5 @@
 __Memory__: `6` G
 
 ## Source Information
-The Notebook, "Intro to Jupyter Notebook and Python Crash Course" (hist3368-week1-intro-to-jupyter.ipynb), was written by Lauren Klein, Associate Professor in the departments of English and Quantitative Theory & Methods at Emory University. It was copied/forked from [laurenfklein](https://github.com/laurenfklein) at:
+The Notebooks in this directory were written by Jo Guldi, Associate Professor of History, and Steph Buongiorno, PhD candidate in applied science. "hist3368-week1-intro-to-jupyter.ipynb" was inspired by Lauren Klein, Associate Professor in the departments of English and Quantitative Theory & Methods at Emory University. The original version can be found on [laurenfklein](https://github.com/laurenfklein)'s GitHub at:
 [laurenfklein/emory-qtm340/notebooks/class3-jupyter-intro.ipynb](https://github.com/laurenfklein/emory-qtm340/blob/master/notebooks/class3-jupyter-intro.ipynb).
-
-Course-specific revisions were made to the Notebook by Dr. Jo Guldi. 
