@@ -8,8 +8,8 @@
 
 <!-- __Custom module paths__: `module use $HOME/digital-history/text_mining_with_python` -->
 
-__Memory__: `30` G
+__Memory__: `64` G
 
 ## Source Information
 
-The Notebook, "Calculating Log-Liklihood" (hist3368-week9-log-likelihood.ipynb), was written by Jo Guldi.
+The Notebook, "Calculating Log-Liklihood" (hist3368-week10-distictiveness.ipynb), was written by Jo Guldi.

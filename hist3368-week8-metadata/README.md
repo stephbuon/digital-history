@@ -32,6 +32,6 @@ __Memory__: `20` G
 
 ### Source Information
 
-The Notebook, "Natural Language Processing with spaCy" (hist3368-week7-intro-spacy.ipynb), was written by Steph Buongiorno, project manager to Dr. Jo Guldi and PhD student in Applied Science in Engineering at Southern Methodist University.
+The Notebook, "Natural Language Processing with spaCy" (hist3368-week8-metadata.ipynb), was written by Steph Buongiorno, project manager to Dr. Jo Guldi and PhD student in Applied Science in Engineering at Southern Methodist University.
 
 

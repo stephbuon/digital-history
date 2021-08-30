@@ -8,7 +8,7 @@
 
 <!-- __Custom module paths__: `module use $HOME/text_mining_with_python` -->
 
-__Memory__: `20`
+__Memory__: `64`
 
 ## Source Information
-The Notebook, "Word Embedding Models: word2vec" (hist3368-week10-word-embeddings.ipynb), was written by Jo Guldi.
+The Notebook, "Word Embedding Models: word2vec" (hist3368-week12-word-context-vectors.ipynb), was written by Jo Guldi.
