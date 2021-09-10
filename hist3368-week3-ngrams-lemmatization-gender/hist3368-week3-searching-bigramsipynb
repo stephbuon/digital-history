@@ -1,0 +1,1619 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "For citation information, please see the \"Source Information\" section listed in the associated README file: https://github.com/stephbuon/digital-history/tree/master/hist3368-week3-ngrams-lemmatization-gender"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Week 3 Mini Notebook: Searching Bigrams"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Very often in this work we will be interested not only in individual words but in multiple word phrases.  Sometimes multiple word phrases are repeated often, and they hold potent meaning:\n",
+    "    \n",
+    "   * true love\n",
+    "   * dining room\n",
+    "   * law and order\n",
+    "\n",
+    "Counting two word phrases can also illuminate hidden bias in large groups of documents. For example, one study proved that plot summaries of twentieth-century American movies tended to assign different verbs to the pronouns \"he\" and \"she\":\n",
+    "\n",
+    "   * he beats\n",
+    "   * he instructs\n",
+    "   * he challenges\n",
+    "   * he orders\n",
+    "   * he owns\n",
+    "   \n",
+    " \n",
+    "   * she cries\n",
+    "   * she rejects\n",
+    "   * she accepts\n",
+    "   * she forgives\n",
+    "   * she begs\n",
+    "   \n",
+    "see http://varianceexplained.org/r/tidytext-gender-plots/\n",
+    "\n",
+    "Clearly, these two-word phrases suggest some bias in the ways that women and men are portrayed on the American screen.\n",
+    "\n",
+    "The practice of finding multiple-word phrases is called finding **\"ngrams\"**.  A two-word phrase is also called a **\"bigram\"**.  A three-word phrase is called a **\"trigram\"**, and so on.  \n",
+    "\n",
+    "In general, repeated many-word phrases often hold telling clues about the values of a text.\n",
+    "\n",
+    "In this notebook, we will learn how to search for multiple-word phrases.   We will use the **TextBlob** software package and the command **.ngram()** to find these phrases."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Download some Jane Austen Novels"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "These steps repeat the instructions for downloading and cleaning text from earlier. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "/scratch/group/history/hist_3368-jguldi\n"
+     ]
+    }
+   ],
+   "source": [
+    "cd /scratch/group/history/hist_3368-jguldi"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import nltk, numpy, re, matplotlib\n",
+    "\n",
+    "\n",
+    "with open('senseandsensibility.txt', 'r') as myfile:\n",
+    "    sas_data = myfile.read().split('\\n\\n\"I suppose you know, ma\\'am, that Mr. Ferrars is married\"\\n\\nIt _was_ Edward\\n\\n\"Everything in such respectable condition\"\\n\\n ')[1].split('THE END')[0].strip()\n",
+    "\n",
+    "with open('emma.txt', 'r') as myfile:\n",
+    "    emma_data = myfile.read().split('CHAPTER I')[1].split('FINIS')[0].strip()\n",
+    "\n",
+    "with open('prideandprejudice.txt', 'r') as myfile:\n",
+    "    pap_data = myfile.read().split('CHAPTER I')[1].split('End of the Project Gutenberg EBook of Pride and Prejudice, by Jane Austen')[0].strip()\n",
+    "\n",
+    "# combine into a list\n",
+    "data = [sas_data, emma_data, pap_data]\n",
+    "\n",
+    "# remove whitespace characters\n",
+    "for i in range(len(data)):\n",
+    "    data[i] = data[i].replace('\\n', ' ')\n",
+    "\n",
+    "# split into words\n",
+    "import pandas\n",
+    "\n",
+    "for novel in data:\n",
+    "    words = novel.split()\n",
+    "\n",
+    "# lowercase and strip punctuation\n",
+    "import re\n",
+    "\n",
+    "for i in range(len(data)):\n",
+    "    # data[i] is the current novel\n",
+    "    data[i] = data[i].lower() # force to lowercase\n",
+    "    data[i] = re.sub('[\\\",.;:?([)\\]_*]', '', data[i]) # remove punctuation and special characters with regular expression\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We now have a list of novels called **data**, which has been stripped of punctuation & lowercased"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {
+    "scrolled": true
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'chapter i   the family of dashwood had long been settled in sussex their estate was large and their residence was at norland park in the centre of their property where for many generations they had lived in so respectable a manner as to engage the general good opinion of their surrounding acquaintance the late owner of this estate was a single man who lived to a very advanced age and who for many years of his life had a constant companion and housekeeper in his s'"
+      ]
+     },
+     "execution_count": 3,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "data[0][:500].strip() # .strip() just removes the extra whitespace from the title page and allow the text to display properly"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "***IMPORTANTLY*** please note that we did not stopword the data this time. \n",
+    "\n",
+    "### The Order of Cleaning Operations Matters\n",
+    "\n",
+    "The order of cleaning operations matters when grammatical structures -- like those captured by bigrams -- are in play.\n",
+    "\n",
+    "It might not matter whether you stopword or strip punctuation first. But as soon as you introduce grammatical structures -- like two-word phrases -- you need to work with sentences that faithfully reproduce the flow of the original text.  That is, you need to work with sentences that haven't yet been stopworded. \n",
+    "\n",
+    "When we look for grammatical relationships -- like verbs that follow nouns, which we will capture in today's analysis, or meaningful two-word phrases -- **stopwords are important** -- at least for creating the original index of two-word phrases.\n",
+    "\n",
+    "Stopwords are part of the order of the sentence. "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "\n",
+    "*You should get into the habit of asking yourself which cleaning steps have been executed, in which order, and what that means for the results.*\n",
+    "\n",
+    "***In text mining, the analyst has to choose which cleaning steps to use for each analysis in question.***  \n",
+    "\n",
+    "As this course moves forward, we'll discuss less and less the steps for cleaning that we have chosen and the order.  We'll leave it to you to figure out why certain steps go in a certain order. \n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Counting Words and N-Grams"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### N-Grams"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Sometimes we want to look for multi-word phrases instead of individual words.  For example, if we're researching the living spaces of Jane Austen's England, we definitely want to know whether she refers to \"dining rooms\" or \"bed-rooms\" (which our punctuation clean-up might have turned into separate words, depending on what we did)."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We will use the software package **textblob** and the command TextBlob().  **TextBlob()** takes an object which is a string of text.\n",
+    "\n",
+    "   TextBlob(novel)\n",
+    "\n",
+    "We will use the command **.ngrams()** which takes the object \"n = _,\" where _ is set as the number of words in a phrase."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Here's how we tell TextBlob to look at the first 100 characters of Sense and Sensibility for 2-word phrases."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {
+    "scrolled": true
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[WordList(['chapter', 'i']),\n",
+       " WordList(['i', 'the']),\n",
+       " WordList(['the', 'family']),\n",
+       " WordList(['family', 'of']),\n",
+       " WordList(['of', 'dashwood']),\n",
+       " WordList(['dashwood', 'had']),\n",
+       " WordList(['had', 'long']),\n",
+       " WordList(['long', 'been']),\n",
+       " WordList(['been', 'settled']),\n",
+       " WordList(['settled', 'in'])]"
+      ]
+     },
+     "execution_count": 4,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "from textblob import TextBlob\n",
+    "\n",
+    "bigrams = TextBlob(data[0][:100]).ngrams(n=2)\n",
+    "bigrams[:10]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Notice what's happening. If you read through the first word only of the above pairs, it reads just like the first words of the chapter: \"Chapter i: The Family of Dashwood had long been settled in Sussex.\"  But the computer has identified all the two-word pairs in that sentence: \"the family,\" \"family of,\" \"of Dashwood.\"  \n",
+    "\n",
+    "That is *exactly* what bigrams are."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Here's how we look for three-word phrases."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[WordList(['chapter', 'i', 'the']),\n",
+       " WordList(['i', 'the', 'family']),\n",
+       " WordList(['the', 'family', 'of']),\n",
+       " WordList(['family', 'of', 'dashwood']),\n",
+       " WordList(['of', 'dashwood', 'had'])]"
+      ]
+     },
+     "execution_count": 5,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "trigrams = TextBlob(data[0][:100]).ngrams(n=3)\n",
+    "trigrams[:5]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Here's how we look for four-word phrases."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[WordList(['chapter', 'i', 'the', 'family']),\n",
+       " WordList(['i', 'the', 'family', 'of']),\n",
+       " WordList(['the', 'family', 'of', 'dashwood']),\n",
+       " WordList(['family', 'of', 'dashwood', 'had']),\n",
+       " WordList(['of', 'dashwood', 'had', 'long'])]"
+      ]
+     },
+     "execution_count": 6,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "fourgrams = TextBlob(data[0][:100]).ngrams(n=4)\n",
+    "fourgrams[:5]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "How would you like for five-word phrases?"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Converting WordList N-grams to a Normal List"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "When we call TextBlob().ngrams(), the bigrams that result are in the form of a list, each member of which is a list in the proprietary **\"WordList\"** format.  \n",
+    "\n",
+    "Wordlist is part of the proprietary software associated with the package TextBlob. It functions much like a **normal list** of lists, where each WordList is a list of words.\n",
+    "\n",
+    "Often, however, we will want bigrams to appear as a string: 'the family' rather than ['the', 'family']. It's good to be able to convert a list of WordLists of individual words into a simple list of strings.  \n",
+    "\n",
+    "We can convert them into a **normal list** of **strings** by:\n",
+    "   * calling each part of the list using square brackets (**bigram[0]**, **bigram[1]**)\n",
+    "   * pasting them together using '+' with a space (' ') in the middle \n",
+    "\n",
+    "Here's a loop to clean up just the bigrams generated from *Sense and Sensibility* above -- the WordList data *bigrams*:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['chapter i', 'i the', 'the family', 'family of', 'of dashwood']"
+      ]
+     },
+     "execution_count": 7,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "bigramlist = [] # create an empty list which we will fill in with the following loop:\n",
+    "\n",
+    "for bigram in bigrams: # move through each line of the *bigrams* list\n",
+    "    bigram2 = bigram[0] + ' ' + bigram[1] # call the first word, a space, and the second word into a new string\n",
+    "    bigramlist.append(bigram2) # save the string \n",
+    "bigramlist[:5]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Generating Bigrams and Cleaning Them At the Same Time\n",
+    "\n",
+    "Now, let's try generating bigrams for all the novels, and cleaning them, using a nested loop.  "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['chapter i', 'i the', 'the family', 'family of', 'of dashwood']"
+      ]
+     },
+     "execution_count": 8,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "bigramlist = [] # make an empty list\n",
+    "\n",
+    "for novel in data: # cycle through each novel\n",
+    "    bigrams = TextBlob(novel).ngrams(n=2) # get the bigrams from the novel\n",
+    "    for bigram in bigrams: # for each bigram in the WordList bigram list\n",
+    "        bigram2 = bigram[0] + ' ' + bigram[1] # take the first word, add a space, and then the second word, making a new string\n",
+    "        bigramlist.append(bigram2) # save the string to the list, *bigramlist*\n",
+    "\n",
+    "bigramlist[:5]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We have done the same thing as we did above, but now *bigramlist* contains all the data for all three novels. \n",
+    "\n",
+    "We've also consolidated the code from the previous two sections into one block of code."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Count the clean bigrams"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Now that we have all the bigrams in one list, we can also count the overall top bigrams"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Let's count the most common bigrams with **value_counts()**:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "to be           448\n",
+       "of the          444\n",
+       "in the          369\n",
+       "of her          291\n",
+       "it was          290\n",
+       "to the          244\n",
+       "mrs jennings    237\n",
+       "to her          234\n",
+       "i am            232\n",
+       "she was         213\n",
+       "dtype: int64"
+      ]
+     },
+     "execution_count": 9,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "bigramcounts = pd.Series.value_counts(bigramlist)\n",
+    "bigramcounts[:10]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We did it!  Also, our results are boring.  Now is a good time to apply stopwords.  \n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Stopwording a bigram list"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Above, we told you that is was important not to stopword at first when you begin generating n-grams, because we want to preserve grammatical structure. \n",
+    "\n",
+    "However, now is a good time to apply stopwords to find more meaningful results.\n",
+    "\n",
+    "*Why can we apply stopwords now?* Because we have already done the n-gram analysis, and all of our n-grams are grammatically meaningful.\n",
+    "\n",
+    "*As a general rule, you must apply grammatical analysis -- like counting n-grams -- before removing words*"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### How to stopword an individual bigram"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Stopwording a bigram list is a little more tricky than stopwording a single word list, because each bigram is composed of two words."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 10,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "from nltk.corpus import stopwords\n",
+    "stopwords = stopwords.words('english')\n",
+    "\n",
+    "\"to\" in stopwords"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 11,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "\"be\" in stopwords"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "False"
+      ]
+     },
+     "execution_count": 12,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "\"to be\" in stopwords"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "However, if we break up \"to be\" into two words, stopwording works again."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['to', 'be']"
+      ]
+     },
+     "execution_count": 13,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "\"to be\".split()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "True\n",
+      "True\n"
+     ]
+    }
+   ],
+   "source": [
+    "for word in  \"to be\".split():\n",
+    "    print(word in stopwords)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Another way of condensing that information is to tweak the for loop above to the formula\n",
+    "\n",
+    "     item in list1 for item in list2 \n",
+    "\n",
+    "-- which means exactly the same as the loop above.  Sometimes in Python we will want to condense for-loops to *item in list for item in list* structures.  It's not terribly important that you're able to generate this grammar, but you should embrace the general notion that the item-for-item grammar can be translated into a for-loop.\n",
+    "\n",
+    "We the *item for item* grammar is useful because we can use it alongside conditional statements.  \n",
+    "\n",
+    "   * We can use the conditional \"all\" to see if both statements are true (that is, both 'to' and 'be' are in stopwords)\n",
+    "   * We can use the conditional \"any\" to see whether *either* 'to' or 'be' are stopwords.  \n",
+    "   \n",
+    "As we shall see below, these two tests will produce subtle but important differences in the data we generate."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 15,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "all(word in stopwords for word in \"to be\".split())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 16,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "any(word in stopwords for word in \"to be\".split())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "metadata": {
+    "scrolled": true
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 17,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "any(word in stopwords for word in \"the girl\".split())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "False"
+      ]
+     },
+     "execution_count": 18,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "all(word in stopwords for word in \"the girl\".split())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "False"
+      ]
+     },
+     "execution_count": 19,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "any(word in stopwords for word in \"mrs jennings\".split())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "False"
+      ]
+     },
+     "execution_count": 20,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "all(word in stopwords for word in \"mrs jennings\".split())"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Stopwording a bigram list\n",
+    "\n",
+    "Now that we understand how to stopword an individual bigram, we can apply it to an entire list of bigrams."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can write a for loop to apply stopwords to the bigram list. Notice that below we are using the \"any\" command, which will retain all bigrams that include no stopwords or just one stopword, while filtering out bigrams that are composed of two stopwords.\n",
+    "\n",
+    "There is no one rule of practice about how to stopword bigram lists.  But different filtering practices get different results.  Your responsibility as an analyst is to think critically about your results and to try on different approaches to explore the data and expand your itnerpretations."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 21,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "mrs jennings       237\n",
+       "could not          167\n",
+       "her sister         145\n",
+       "colonel brandon    132\n",
+       "mrs dashwood       121\n",
+       "her mother         118\n",
+       "sir john           112\n",
+       "she could          108\n",
+       "would not          101\n",
+       "to see             101\n",
+       "would be           100\n",
+       "lady middleton      96\n",
+       "the world           92\n",
+       "the house           88\n",
+       "would have          86\n",
+       "must be             86\n",
+       "every thing         81\n",
+       "could be            77\n",
+       "it would            77\n",
+       "you know            77\n",
+       "am sure             77\n",
+       "to make             76\n",
+       "mrs ferrars         76\n",
+       "my dear             75\n",
+       "marianne 's         74\n",
+       "miss dashwood       70\n",
+       "so much             68\n",
+       "your sister         67\n",
+       "i shall             65\n",
+       "and elinor          65\n",
+       "dtype: int64"
+      ]
+     },
+     "execution_count": 21,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "anycleanbigramlist = []\n",
+    "    \n",
+    "for bigram in bigramlist: # cycle through each bigram in the bigram list\n",
+    "    bigram2 = bigram.split() # split the bigram into two words\n",
+    "    if any(word not in stopwords for word in bigram2): # if all the words in the bigram are non-stopwords, then:\n",
+    "        bigram3 = bigram2[0] + ' ' + bigram2[1] # glue the split words back into a phrase with a space in the middle\n",
+    "        anycleanbigramlist.append(bigram3) # use double brackets to grab the whole row -- including the index\n",
+    "\n",
+    "pd.Series.value_counts(anycleanbigramlist)[:30] # show just the top 30"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### Interpreting the results \n",
+    "\n",
+    "In the list of bigrams that includes up to one stopword, we see in this list the importance of female relationships in Austen: \"her sister,\" \"her mother,\" and \"your sister\" are among the most common two-word phrases.  We also see her invoking female possibility -- \"she could\" -- on a regular basis. \n",
+    "\n",
+    "It is likely female characters who declare, \"I shall,\" although in an essay we would have to check our assertion by cross-referencing the 65 instances of \"I shall\" with in-text mentions to figure out if women are really saying \"I shall\" most frequently.\n",
+    "\n",
+    "It's interesting that Austen uses phrases like \"the world\" and \"the house\" to define the sphere of action in her novels. I don't have much to say about those phrases on their own, but they might lead us to ask about how Austen talks about houses and worlds -- a problem we will pursue in a later prob lem set.  \n",
+    "\n",
+    "It's also interesting that she uses phrases such as \"she could\" and \"it would\" or \"could be\" to talk about worlds that *might* happen.  Again, in an essay we'd want to check out multiple examples of how those phrases were used in the primary source to make sure that our analysis is based on fact, not speculation."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### Investigating the data by changing the search parameters.\n",
+    "\n",
+    "Question: how would the results of this table look different if you used \"all\" instead of \"any\" in the loop above?  Try swapping them out and see."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 22,
+   "metadata": {
+    "scrolled": true
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "mrs jennings       237\n",
+       "colonel brandon    132\n",
+       "mrs dashwood       121\n",
+       "sir john           112\n",
+       "lady middleton      96\n",
+       "every thing         81\n",
+       "mrs ferrars         76\n",
+       "marianne 's         74\n",
+       "miss dashwood       70\n",
+       "elinor 's           62\n",
+       "said elinor         61\n",
+       "sister 's           54\n",
+       "mother 's           46\n",
+       "edward 's           43\n",
+       "every body          40\n",
+       "mr willoughby       39\n",
+       "mrs palmer          38\n",
+       "mr palmer           37\n",
+       "john dashwood       37\n",
+       "jennings 's         36\n",
+       "dare say            36\n",
+       "willoughby 's       35\n",
+       "mr ferrars          31\n",
+       "thousand pounds     30\n",
+       "every day           30\n",
+       "said mrs            30\n",
+       "said marianne       29\n",
+       "” “                 29\n",
+       "miss steele         28\n",
+       "miss steeles        28\n",
+       "dtype: int64"
+      ]
+     },
+     "execution_count": 22,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "allcleanbigramlist = []\n",
+    "    \n",
+    "for bigram in bigramlist: # cycle through each bigram in the bigram list\n",
+    "    bigram2 = bigram.split() # split the bigram into two words\n",
+    "    if all(word not in stopwords for word in bigram2): # if all the words in the bigram are non-stopwords, then:\n",
+    "        bigram3 = bigram2[0] + ' ' + bigram2[1] # glue the split words back into a phrase with a space in the middle\n",
+    "        allcleanbigramlist.append(bigram3) # use double brackets to grab the whole row -- including the index\n",
+    "\n",
+    "pd.Series.value_counts(allcleanbigramlist)[:30]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### Interpreting the results of a slightly different iteration\n",
+    "\n",
+    "In the list of bigrams that include no stopwords at all, we no longer see the female relationships. The top two-word phrases are primarily characters -- Mrs. Jennings, Colonel Brandon, Mrs. Dashwood, Sir John, Lady Middleton -- who are referred to most frequently in the novels.  \n",
+    "\n",
+    "We see evidence that female characters talking is an important feature of Austen's novels in phrases such as \"said Elinor\" or \"said Marianne.\" In an interpretive essay, we might want to look up Elinor and Marianne as characters -- perhaps just via a Wikipedia summary -- to try to understand why their speech is so central to the plot.\n",
+    "\n",
+    "Some phrases are more important than others.  \"Every day,\" \"every day\", and \"every body\" are more difficult to interpret.  They may indicate that Austen's characters routinely generalize about an unchanging world, where everyone is expected to act the same. Or they may just be features of ordinary speech. We would want to look at in-text mentions to be sure.\n",
+    "\n",
+    "We see at least one indication that money is important.  The phrase \"thousand pounds\" comes up 30 times. In Austen's novels, the economic dependence of women on dowries and husbands is a key plot point. Are there other top phrases that suggest how central money is to the drama?  Try expanding the number of phrases shown from 30 to 100 and see what you think (HINT: you may have to use a for-loop to print the 100 top phrases).\n",
+    "\n",
+    "**Summing Up**\n",
+    "*It is important for you as an analyst to be able to talk about how slightly different approaches to the data produce slightly different interpretative results.  Your ability to highlight how you manipulated the data, and how each new manipulation of the data produces a new interpretation, is one of the most important skills you can learn in text mining.*"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Filtering bigrams for a common word"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Often we will want to look not at the entire set of bigrams but at bigrams that contain words that are meaningful for a certain kind of analysis, for instance verbs that follow 'she' and verbs that follow 'he.'"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "What if we only want the bigrams that include the word \"she\"?"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Here is a naive way to do it."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "she was      213\n",
+       "she had      193\n",
+       "that she     122\n",
+       "as she       116\n",
+       "she could    108\n",
+       "and she       96\n",
+       "she would     64\n",
+       "said she      47\n",
+       "she is        46\n",
+       "which she     45\n",
+       "dtype: int64"
+      ]
+     },
+     "execution_count": 23,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "she_bigrams = []\n",
+    "\n",
+    "for bigram in bigramlist:\n",
+    "    if \"she\" in bigram: # notice the space after she.  It\n",
+    "        she_bigrams.append(bigram)\n",
+    "        \n",
+    "pd.Series.value_counts(she_bigrams)[:10]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Let's try it for 'he':"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "metadata": {
+    "scrolled": true
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "of the     444\n",
+       "in the     369\n",
+       "of her     291\n",
+       "to the     244\n",
+       "to her     234\n",
+       "she was    213\n",
+       "she had    193\n",
+       "on the     161\n",
+       "at the     160\n",
+       "and the    160\n",
+       "dtype: int64"
+      ]
+     },
+     "execution_count": 24,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "he_bigrams = []\n",
+    "\n",
+    "for bigram in bigramlist:\n",
+    "    if \"he\" in bigram: # notice the space after she.  It\n",
+    "        he_bigrams.append(bigram)\n",
+    "        \n",
+    "pd.Series.value_counts(he_bigrams)[:10]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Unfortunately, the above code won't work for 'he,' because it will pick up other words that contain 'he,' including:\n",
+    "   * 'she' \n",
+    "   * 'mother' \n",
+    "   * 'heart' \n",
+    "   * 'her'\n",
+    "   * 'the'"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Refining our filter using Regular Expressions"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The solution is to use \"regular expressions,\" which are ways of coding the details of language.  We will use the **re** package and the command **.compile()** to make a \"regular expression\" that helps Python to search for an *exact word* like 'he' rather than the string 'he' as it appears in words like 'her' and 'heart.'\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import re"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**.compile()** takes one object -- a properly formatted \"Regular Expression.\"\n",
+    "\n",
+    "The **re.compile()** command allows you to communicate with Python about such needs as detecting the beginning or end of a word.\n",
+    "\n",
+    "In fact, telling Python about the beginning and end of words is the major reason you'll want to use Regular Expressions in this class. We'll search for words this way all the time. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 26,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "pattern = re.compile(\"\\\\bhe\\\\b\") #  notice the .compile() and the \"escapes\"+b to signify \"word boundary\""
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Here are the rules you need to know:\n",
+    "\n",
+    "   * codes in Regular Expressions begin with two backslashes. This punctuation tells the computer not to take the next letter literally: **\"\\\\\\\\\"**.  This is called an \"escape\"\n",
+    "   * with \"b\" for \"boundary,\" --  **\"\\\\\\b\"** -- the regular exprerssion tells the computer to search for a word \"boundary.\"\n",
+    "   * If you place \"\\\\\\b\" before and after a word, then send it to re.compile(), that tells Python to search for the word wherever it exists as a freestanding word in a string of text, e.g. \" he \" or \"he.\" or \"He \", but not \"her,\" \"heart\", or \"she.\"\n",
+    "\n",
+    "If you tell the computer to find a \"boundary\" in this way, it will look for both spaces and for the end of strings.\n",
+    "\n",
+    "#### Evaluating a regular expression using .match()\n",
+    "\n",
+    "Notice how I use two \"\\\\\\b\"'s below to tell the computer to look for the word \"he\" but not \"her\" or \"the.\" \n",
+    "\n",
+    "Notice the use of the command **.match()**.  \n",
+    "\n",
+    "   * .match attaches to 'pattern' -- which is the variable we defined up above as the regular expression for freestanding 'he'. \n",
+    "       * 'Pattern' here is just a variable name; it could be called anything.\n",
+    "   * .match takes one object: the list where Python is searching for the pattern. \n",
+    "       * In the case below, Python is searching for the pattern \"he\" (as a freestanding word) in each \"bigram\" in \"bigramlist.\"\n",
+    "\n",
+    "The output of .match() is True or False.  We can use that output with conditionals (such as 'if') to tell Python how to behave.\n",
+    "   "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Let's test if .match() applied to the string 'pattern' matches the string 'she':"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 27,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "false\n"
+     ]
+    }
+   ],
+   "source": [
+    "if pattern.match(\"she\"):\n",
+    "    print(\"true\")\n",
+    "else:\n",
+    "    print(\"false\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Let's test if .match() applied to the string 'pattern' matches the string 'he':"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "metadata": {
+    "scrolled": true
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "true\n"
+     ]
+    }
+   ],
+   "source": [
+    "if pattern.match(\"he\"):\n",
+    "    print(\"true\")\n",
+    "else:\n",
+    "    print(\"false\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Let's test if .match() applied to the string 'pattern' matches the string 'he said':"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 29,
+   "metadata": {
+    "scrolled": true
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "true\n"
+     ]
+    }
+   ],
+   "source": [
+    "if pattern.match(\"he said\"):\n",
+    "    print(\"true\")\n",
+    "else:\n",
+    "    print(\"false\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Search for a regular expression in a bigram list"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Let's write a loop to search for the pattern 'he' with word boundaries coded by regular expression.\n",
+    "\n",
+    "Recall that we defined the variable *pattern* above using re.compile() and the symbol **\\\\\\b** for word boundaries."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 30,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "he was        126\n",
+       "he had        113\n",
+       "he is          75\n",
+       "he has         49\n",
+       "he did         37\n",
+       "he could       36\n",
+       "he would       28\n",
+       "he should      23\n",
+       "he said        23\n",
+       "he replied     22\n",
+       "dtype: int64"
+      ]
+     },
+     "execution_count": 30,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "he_bigrams = [] # an empty list for saving certain data only\n",
+    "\n",
+    "for bigram in bigramlist: # cycle through each bigram in the list\n",
+    "    if pattern.match(bigram): # is a freestanding 'he' in this bigram?\n",
+    "        he_bigrams.append(bigram) # if so, save it.  \n",
+    "        \n",
+    "pd.Series.value_counts(he_bigrams)[:10]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Because our filter is now refined enough to identify unique words, we can try it on the stopworded *anycleanbigramlist* data we made above."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 31,
+   "metadata": {
+    "scrolled": true
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "he could        36\n",
+       "he would        28\n",
+       "he said         23\n",
+       "he replied      22\n",
+       "he might        19\n",
+       "he must         18\n",
+       "he came         12\n",
+       "he looked       11\n",
+       "he never         9\n",
+       "he may           8\n",
+       "he left          8\n",
+       "he really        8\n",
+       "he stopped       8\n",
+       "he added         7\n",
+       "he married       7\n",
+       "he felt          6\n",
+       "he went          6\n",
+       "he seemed        6\n",
+       "he told          6\n",
+       "he continued     6\n",
+       "dtype: int64"
+      ]
+     },
+     "execution_count": 31,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "he_bigrams = []\n",
+    "\n",
+    "for bigram in anycleanbigramlist:\n",
+    "    if pattern.match(bigram): # notice the use of .match()\n",
+    "        he_bigrams.append(bigram)\n",
+    "        \n",
+    "pd.Series.value_counts(he_bigrams)[:20]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "This list gives us many verbs that appear with the masculine pronoun in Jane Austen's novels.  \n",
+    "\n",
+    "Notably, this list doesn't look much like the list of verbs for men from the study of American movies that we saw above.  Men aren't 'leading' or \"beating\" or \"challenging.\"  What are the men doing in Austen?\n",
+    "\n",
+    "   * They have conversations: prominent phrases include: \"he said,\" \"he replied,\" \"he told,\" \"he added,\" and \"he stopped\".  \n",
+    "       * The last of these phrases, \"he stopped,\" is ambiguous. We'd have to look at in-text mentions to tell whether men are \"stopping by\" to say hello, or stopping in the  midst of conversation.\n",
+    "   * They are able to do things -- perhaps in distinction to what women can do, although we'd have to test this hypothesis by studying in-text mentions: \"he could,\" \"he would,\" \"he might,\" \"he may\"\n",
+    "   * They are involved in relationships, which have an emotional element: \"he married,\" \"he felt\" \n",
+    "   * Perhaps, they have obligations: \"he must\" suggests that, although the phrase is ambiguous. We'd have to look up in-text mentions to figure out if people are telling others that they \"must\" do something, or if men feel that they \"must\" fulfill their duty, or if observers anticipate that men are likely to do something in the future.\n",
+    "   * Other people speculate about men: \"he seemed.\"  Again, we'd want to look this up for more detail.\n",
+    "   \n",
+    "What happens if you expand the number of phrases we're looking at from 20 to 40? Try changing the count to see."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### Summing Up"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Here is code that summarizes everything we learned in this notebook.  You should be able to make sense of what the code does."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 32,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "from textblob import TextBlob\n",
+    "from nltk.corpus import stopwords\n",
+    "stopwords = stopwords.words('english')\n",
+    "import re"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 33,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "### bigrams in their natural order with no cleaning or counting\n",
+      "[WordList(['chapter', 'i']), WordList(['i', 'the']), WordList(['the', 'family']), WordList(['family', 'of']), WordList(['of', 'dashwood'])]\n",
+      "*****\n",
+      "\n",
+      "### top bigrams with any word stopworded\n",
+      "mrs jennings       474\n",
+      "could not          326\n",
+      "her sister         286\n",
+      "colonel brandon    264\n",
+      "mrs dashwood       242\n",
+      "dtype: int64\n",
+      "*****\n",
+      "\n",
+      "### bigrams with all words stopworded\n",
+      "mrs jennings       474\n",
+      "colonel brandon    264\n",
+      "mrs dashwood       242\n",
+      "sir john           224\n",
+      "lady middleton     192\n",
+      "dtype: int64\n",
+      "*****\n",
+      "\n",
+      "### he- plus any stopworded word\n",
+      "he could      70\n",
+      "he would      54\n",
+      "he said       46\n",
+      "he replied    44\n",
+      "he might      38\n",
+      "dtype: int64\n",
+      "*****\n",
+      "\n"
+     ]
+    }
+   ],
+   "source": [
+    "novel = data[0]\n",
+    "\n",
+    "# extract ngrams where n is set at 2\n",
+    "bigrams = TextBlob(novel).ngrams(n=2)\n",
+    "print('### bigrams in their natural order with no cleaning or counting')\n",
+    "print(bigrams[:5])\n",
+    "print('*****')\n",
+    "print('')\n",
+    "\n",
+    "###################\n",
+    "# stopword the bigram list -- two options\n",
+    "# stopwording either word in the bigram\n",
+    "anycleanbigramlist = []\n",
+    "for bigram in bigrams: # cycle through each bigram in the bigram list\n",
+    "    bigram = list(bigram)\n",
+    "    for word in bigram:\n",
+    "        if any(word not in stopwords for word in bigram): # if all the words in the bigram are non-stopwords, then:\n",
+    "            bigram2 = bigram[0] + ' ' + bigram[1] # glue the split words back into a phrase with a space in the middle\n",
+    "            anycleanbigramlist.append(bigram2) # use double brackets to grab the whole row -- including the index\n",
+    "print('### top bigrams with any word stopworded')\n",
+    "print(pd.Series.value_counts(anycleanbigramlist)[:5]) # show just the top 30\n",
+    "print('*****')\n",
+    "print('')\n",
+    "\n",
+    "####\n",
+    "# stopwording both words in the bigram\n",
+    "allcleanbigramlist = []\n",
+    "for bigram in bigrams: # cycle through each bigram in the bigram list\n",
+    "    for word in bigram:\n",
+    "        if all(word not in stopwords for word in bigram): # if all the words in the bigram are non-stopwords, then:\n",
+    "            bigram2 = bigram[0] + ' ' + bigram[1] # glue the split words back into a phrase with a space in the middle\n",
+    "            allcleanbigramlist.append(bigram2) # use double brackets to grab the whole row -- including the index\n",
+    "print('### bigrams with all words stopworded')\n",
+    "print(pd.Series.value_counts(allcleanbigramlist)[:5])\n",
+    "print('*****')\n",
+    "print('')\n",
+    "\n",
+    "###################\n",
+    "# filter stopworded lists for 'he' \n",
+    "pattern = re.compile(\"\\\\bhe\\\\b\")\n",
+    "he_bigrams = []\n",
+    "for bigram in anycleanbigramlist:\n",
+    "    if pattern.match(bigram): # notice the use of .match()\n",
+    "        he_bigrams.append(bigram)\n",
+    "print('### he- plus any stopworded word')\n",
+    "print(pd.Series.value_counts(he_bigrams)[:5]) # count them and show just the top 30\n",
+    "print('*****')\n",
+    "print('')\n",
+    "\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can use just the last step to re-filter for any combination of words"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 34,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['chapter i',\n",
+       " 'chapter i',\n",
+       " 'the family',\n",
+       " 'the family',\n",
+       " 'family of',\n",
+       " 'family of',\n",
+       " 'of dashwood',\n",
+       " 'of dashwood',\n",
+       " 'dashwood had',\n",
+       " 'dashwood had']"
+      ]
+     },
+     "execution_count": 34,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "anycleanbigramlist[:10]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 35,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "None\n"
+     ]
+    }
+   ],
+   "source": [
+    "bigram = 'mom him'\n",
+    "print(pattern.match(bigram))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 36,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['he invited',\n",
+       " 'he invited',\n",
+       " 'he intended',\n",
+       " 'he intended',\n",
+       " 'he added',\n",
+       " 'he added',\n",
+       " 'he left',\n",
+       " 'he left',\n",
+       " 'he meant',\n",
+       " 'he meant']"
+      ]
+     },
+     "execution_count": 36,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "he_bigrams[:10]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Assignment"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "\n",
+    "1) Write a piece of code that looks for bigrams, trigrams, up to nine-grams in Jane Austen.  You will do this most easily by creating a for-loop where each iteration of the loop changes the '_' in the the 'n = _' parameters of the command **TextBlob(novel).ngrams(n = _)**  from 2 to 3 to 4 to 5 etc.\n",
+    "    \n",
+    "  * Add a line using *len()* to the for-loop to find out how long is the list of n-grams generated.  Count how many total multi-word phrases there are for each iteration, i.e.: how many 9-word phrases are there, total? how many 8-word phrases? how many 7-word phrases? etc. \n",
+    "    \n",
+    "  * Adjust the for-loop to save the results of each count in a list.  HINT: You may need to greate a new dummy variable for this count before the for loop.\n",
+    "    \n",
+    "  * Use value_counts() to count how many times each multi-word phrase appears.  What are the longest phrases that are repeated more than 3 times across Austen's corpus? Paste at least 5 into a table in Word.  \n",
+    "  \n",
+    "  * Write a paragraph of at least three sentences interpreting Austen's most frequent long phrases.\n",
+    "    \n",
+    "2) Use stopwording.  What are the longest 3-word phrases in Jane Austen that don't include stopwords? HINT: inside the for loop, create a section to split up your bigrams and test them individually.\n",
+    "\n",
+    "  * Create a table.  Output the results to Word.  Write a paragraph of at least three sentences discussing the phrases.  \n",
+    "      \n",
+    " \n",
+    "\n",
+    "Upload a screenshot of your code and the answer to Canvas."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.6.7"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
